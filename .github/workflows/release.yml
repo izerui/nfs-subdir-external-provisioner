@@ -52,7 +52,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v1
         with:
-          registry: harbor.yj2025.com/library
+          registry: harbor.yj2025.com
           username: ${{ secrets.REGISTRY_USERNAME }
           password: ${{ secrets.REGISTRY_TOKEN }}
       -
