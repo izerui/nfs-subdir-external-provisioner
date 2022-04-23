@@ -1,4 +1,4 @@
-# Copyright 2016 The Kubernetes Authors.
+# Copyright 2017 The Kubernetes Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,9 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CMDS=nfs-subdir-external-provisioner
-all: build
-
-include release-tools/build.make
-
-BUILD_PLATFORMS=linux amd64; linux arm -arm; linux arm64 -arm64; linux ppc64le -ppc64le; linux s390x -s390x
+FROM multiarch/alpine:armhf-v3.12
+RUN apk update --no-cache && apk add ca-certificates
+COPY nfs-subdir-external-provisioner /nfs-subdir-external-provisioner
+ENTRYPOINT ["/nfs-subdir-external-provisioner"]
